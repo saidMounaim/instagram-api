@@ -30,6 +30,30 @@ export const addComment = asyncHandler(async (req, res) => {
 	res.status(201).json({ success: true, data: comment });
 });
 
+//@DESC Update Comment
+//@ROUTE /api/comments/:id
+//@METHOD PUT
+export const updateComment = asyncHandler(async (req, res) => {
+	let comment = await Comment.findById(req.params.id);
+
+	if (!comment) {
+		res.status(404);
+		throw new Error('Comment not found');
+	}
+
+	if (req.user.id !== comment.user.toString() && req.user.role !== 'admin') {
+		res.status(404);
+		throw new Error('Not Authorize to update this comment');
+	}
+
+	comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+		runValidators: true,
+	});
+
+	res.status(201).json({ success: true, data: comment });
+});
+
 //@DESC Delete Comment
 //@ROUTE /api/comments/:id
 //@METHOD DELETE
