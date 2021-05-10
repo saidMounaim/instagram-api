@@ -145,3 +145,28 @@ export const likePost = asyncHandler(async (req, res) => {
 
 	res.status(201).json({ success: true, data: post });
 });
+
+//@DESC Unlike Post
+//@ROUTE /api/posts/:id/unlike
+//METHOD PUT
+export const unlikePost = asyncHandler(async (req, res) => {
+	let post = await Post.findById(req.params.id);
+
+	if (!post) {
+		res.status(404);
+		throw new Error('Post Not Found');
+	}
+
+	post = await Post.findByIdAndUpdate(
+		req.params.id,
+		{
+			$pull: { likes: req.user.id },
+		},
+		{
+			new: true,
+			runValidators: true,
+		}
+	);
+
+	res.status(201).json({ success: true, data: post });
+});
