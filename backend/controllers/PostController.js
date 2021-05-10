@@ -115,3 +115,33 @@ export const deletePost = asyncHandler(async (req, res) => {
 
 	res.status(201).json({ success: true, data: {} });
 });
+
+//@DESC Like Post
+//@ROUTE /api/posts/:id/likes
+//METHOD PUT
+export const likePost = asyncHandler(async (req, res) => {
+	let post = await Post.findById(req.params.id);
+
+	if (!post) {
+		res.status(404);
+		throw new Error('Post Not Found');
+	}
+
+	if (post.likes.includes(req.user.id)) {
+		res.status(401);
+		throw new Error('Already likes post');
+	}
+
+	post = await Post.findByIdAndUpdate(
+		req.params.id,
+		{
+			$push: { likes: req.user.id },
+		},
+		{
+			new: true,
+			runValidators: true,
+		}
+	);
+
+	res.status(201).json({ success: true, data: post });
+});
