@@ -19,54 +19,54 @@ REST API with all basic features real Instagram has.
 
 ## Default urls:
 
--   Login User :
+-   Login User : <br/>
     localhost:5000/api/v1/auth/login
--   Register User :
+-   Register User : <br/>
     localhost:5000/api/v1/user/register
--   Get Logged id User :  
+-   Get Logged in User : <br/>
     localhost:5000/api/v1/auth/me/
--   Update User Details :
+-   Update User Details : <br/>
     localhost:5000/api/v1/auth/updatedetails
--   Update Password :
+-   Update Password : <br/>
     localhost:5000/api/v1/auth/updatepassword
--   Forgot Password :
+-   Forgot Password : <br/>
     localhost:5000/api/v1/auth/forgotpassword
--   Reset Password :
+-   Reset Password : <br/>
     localhost:5000/api/v1/auth/resetpassword/:resetToken
--   Follow User :
+-   Follow User : <br/>
     localhost:5000/api/v1/auth/follow/:userId
--   Unfollow User :
+-   Unfollow User : <br/>
     localhost:5000/api/v1/auth/unfollow/:userId
 
--   Get All Posts:
+-   Get All Posts : <br/>
     localhost:5000/api/v1/posts
--   Get Single Post :
+-   Get Single Post : <br/>
     localhost:5000/api/v1/posts/:postId
--   Create Post :  
+-   Create Post : <br/>
     localhost:5000/api/v1/posts
--   Update Post :
+-   Update Post : <br/>
     localhost:5000/api/v1/posts/:postId
--   Delete Post :
+-   Delete Post : <br/>
     localhost:5000/api/v1/posts/:postId
--   Like Post :
+-   Like Post : <br/>
     localhost:5000/api/v1/posts/:postId/likes
--   Unlike Post :
+-   Unlike Post : <br/>
     localhost:5000/api/v1/posts/:postId/unlike
 
--   Get All Comments:
+-   Get All Comments : <br/>
     localhost:5000/api/v1/comments
--   Add Comment :  
+-   Add Comment : <br/>
     localhost:5000/api/v1/posts/:postId/comments
--   Update Comment :
+-   Update Comment : <br/>
     localhost:5000/api/v1/comments/:commentId
--   Delete Post :
+-   Delete Post : <br/>
     localhost:5000/api/v1/comments/:commentId
 
--   Get All Users:
+-   Get All Users :<br/>
     localhost:5000/api/v1/users
--   Get Single User :
+-   Get Single User :<br/>
     localhost:5000/api/v1/users/:userId
--   Search:
+-   Search User :<br/>
     localhost:5000/api/v1/users?search=john
 
 ## Usage
