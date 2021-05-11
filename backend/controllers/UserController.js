@@ -5,9 +5,15 @@ import User from '../models/User.js';
 //@ROUTE /api/v1/users
 //@METHOD GET
 export const getAll = asyncHandler(async (req, res) => {
-	const users = await User.find({}).populate('posts');
+	let query;
 
-	res.status(201).json({ success: true, count: users.length, data: users });
+	if (req.query.search) {
+		query = await User.find({ name: { $regex: req.query.search, $options: 'i' } }).populate('posts');
+	} else {
+		query = await User.find({}).populate('posts');
+	}
+
+	res.status(201).json({ success: true, count: query.length, data: query });
 });
 
 //@DESC Get Single User
