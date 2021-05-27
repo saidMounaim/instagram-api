@@ -236,6 +236,17 @@ export const followUser = asyncHandler(async (req, res) => {
 		}
 	);
 
+	await User.findByIdAndUpdate(
+		req.user.id,
+		{
+			$push: { following: user._id }
+		},
+		{
+			new: true,
+			runValidators: true,
+		}
+	);
+
 	res.status(201).json({ success: true, data: follow });
 });
 
@@ -254,6 +265,17 @@ export const unfollowUser = asyncHandler(async (req, res) => {
 		user._id,
 		{
 			$pull: { followers: req.user.id },
+		},
+		{
+			new: true,
+			runValidators: true,
+		}
+	);
+
+	await User.findByIdAndUpdate(
+		req.user.id,
+		{
+			$pull: { following: user._id }
 		},
 		{
 			new: true,
